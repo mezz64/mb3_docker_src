@@ -27,7 +27,8 @@ RUN apt-get update
 RUN apt-get dist-upgrade -qy
 
 # Install MediaBrowser Server build and run dependencies
-RUN apt-get install -qy --force-yes mono-complete Libgdiplus unzip git-core mediainfo wget
+# mono-complete
+RUN apt-get install -qy --force-yes libmono-cil-dev Libgdiplus unzip git-core mediainfo wget
 
 # Install FFMpeg
 RUN apt-get install -y libjpeg62 libjpeg62-dev libopencore-amrnb0 libopencore-amrwb0 zlib1g zlib1g-dev x264 libmp3lame0
