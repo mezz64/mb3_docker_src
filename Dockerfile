@@ -17,9 +17,9 @@ RUN usermod -u 99 nobody
 RUN usermod -g 100 nobody
 
 # FFMpeg PPA
-RUN echo "deb http://ppa.launchpad.net/jon-severinsson/ffmpeg/ubuntu trusty main" >> /etc/apt/sources.list
-RUN echo "deb-src http://ppa.launchpad.net/jon-severinsson/ffmpeg/ubuntu trusty main" >> /etc/apt/sources.list
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1DB8ADC1CFCA9579
+#RUN echo "deb http://ppa.launchpad.net/jon-severinsson/ffmpeg/ubuntu trusty main" >> /etc/apt/sources.list
+#RUN echo "deb-src http://ppa.launchpad.net/jon-severinsson/ffmpeg/ubuntu trusty main" >> /etc/apt/sources.list
+#RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1DB8ADC1CFCA9579
 
 # Update ubuntu
 RUN apt-mark hold initscripts udev plymouth mountall
@@ -30,14 +30,17 @@ RUN apt-get dist-upgrade -qy
 RUN apt-get install -qy --force-yes mono-complete Libgdiplus unzip git-core mediainfo wget
 
 # Install FFMpeg
-RUN apt-get install -y libjpeg62 libjpeg62-dev libopencore-amrnb0 libopencore-amrwb0 zlib1g zlib1g-dev x264 libmp3lame0
-RUN apt-get install -y libav-tools
-RUN apt-get install -y ffmpeg
+#RUN apt-get install -y libjpeg62 libjpeg62-dev libopencore-amrnb0 libopencore-amrwb0 zlib1g zlib1g-dev x264 libmp3lame0
+#RUN apt-get install -y libav-tools
+#RUN apt-get install -y ffmpeg
 
 # Build from source
 RUN wget https://raw.githubusercontent.com/MediaBrowser/MediaBrowser/master/Tools/Linux_Build_Scripts/MediaBrowser.Mono.Build.sh
 RUN sed -i -e s/3\.2\.7/3\.2\.8/g MediaBrowser.Mono.Build.sh
 RUN sed -i -e s/MBVERSION\=.*/MBVERSION\=\"docker\"/g MediaBrowser.Mono.Build.sh
+#Remove MKBUNDLE LINES
+RUN sed -i '220,265d' MediaBrowser.Mono.Build.sh
+
 RUN chmod +x MediaBrowser.Mono.Build.sh
 RUN /MediaBrowser.Mono.Build.sh
 
