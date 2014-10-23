@@ -45,9 +45,12 @@ RUN chmod +x MediaBrowser.Mono.Build.sh
 RUN /MediaBrowser.Mono.Build.sh
 
 # Install
+RUN ls -l
+RUN ls -l /mediabrowser
 RUN mkdir /opt/mediabrowser
 RUN mv /mediabrowser/MediaBrowser.Mono.docker.tar.gz /opt/mediabrowser/
 RUN cd /opt/mediabrowser
+RUN ls -l
 RUN tar -zxvf MediaBrowser.Mono.docker.tar.gz 
 
 # Uncomment for unRAID
