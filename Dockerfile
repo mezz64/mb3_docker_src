@@ -49,8 +49,8 @@ RUN ls -l
 RUN ls -l /mediabrowser
 RUN mkdir /opt/mediabrowser
 RUN mv /mediabrowser/MediaBrowser.Mono.docker.tar.gz /opt/mediabrowser/
-RUN ls -l
 RUN tar -zxvf /opt/mediabrowser/MediaBrowser.Mono.docker.tar.gz -C /opt/mediabrowser/
+RUN ls -l /opt/mediabrowser
 
 # Uncomment for unRAID
 RUN chown -R nobody:users /opt/mediabrowser
